@@ -1,0 +1,97 @@
+﻿@{
+    List<LibModels.GiaoVien> l_GiaoVien = (List<LibModels.GiaoVien>)Model;
+    int totalPage = new LibModels.GiaoVien().GetTotalPage(6);
+}
+
+<hgroup class="page-head">          
+    <h2><span>Đội ngũ giáo viên</span></h2>
+    <h5>Trung tâm luyện thi đại học Tiến Đạt. Số 8, ngõ 17 Tạ Quang Bửu - 0903288866.</h5>
+</hgroup>
+
+<div id="container">
+                                
+    <section class="doc_list two_col clearfix">
+		<ul class="doctors clearfix">
+            @if (l_GiaoVien.Count > 0)
+            {
+                foreach (LibModels.GiaoVien gv in l_GiaoVien)
+                {
+                    <li style="clear:both;">
+                        <figure class="doc-img">													
+					        <a href="/GiaoVien/ChiTiet/@gv.ID" title="@gv.HoTen"><img src="@gv.URL" alt="@gv.HoTen"></a>
+				        </figure>
+				        <h4><a href="/GiaoVien/ChiTiet/@gv.ID">@gv.HoTen</a></h4>
+                        <p>@gv.SoLuoc</p>
+                        <a href="/GiaoVien/ChiTiet/@gv.ID" class="readmore">Xem</a>
+                    </li>
+                }
+            }
+        </ul>
+        <div id="pagination">
+            @if (totalPage > 1)
+            {
+                <a href="#" id="1" class="readmore pageBtn current">1</a>
+                if (totalPage <= 10)
+                {
+                    for (int i = 2; i <= totalPage; i++)
+                    {
+                        <a href="#" class="readmore pageBtn" id="@i">@i</a>
+                    }
+                }
+                else
+                {
+                    for (int i = 2; i <= 7; i++)
+                    {
+                        <a href="#" class="readmore pageBtn" id="@i">@i</a>
+                    }
+                    <span>&nbsp;&nbsp;...&nbsp;&nbsp;</span>
+                    <a href="#" class="readmore pageBtn" id="@(totalPage - 1)">@(totalPage - 1)</a>
+                    <a href="#" class="readmore pageBtn" id="@totalPage">@totalPage</a>
+                }
+            }
+        </div>
+										                                                                               
+    </section>
+								
+</div><!-- end of container -->
+
+<script>
+    var i = 1;
+
+    $(document).ready(function () {
+        $('.pageBtn').click(function () {
+            i = $(this).text();
+            $.ajax({
+                url: "/GiaoVien/giaovien_phantrang",
+                type: 'POST',
+                contentType: "application/json; charset=utf-8",
+                dataType: 'json',
+                data: JSON.stringify({
+                    PageNum: i
+                }),
+                success: successFunc,
+                error: errorFunc,
+                async: false
+            });
+        });
+    });
+
+    function successFunc(data) {
+        $('.pageBtn').each(function () {
+            $(this).attr('class', 'readmore pageBtn');
+        });
+        $('#' + i).attr('class', 'readmore pageBtn current');
+
+        var element = '';
+        var list = data;
+        $.each(list, function (index, item) {
+            element += '<li style="clear:both;"><figure class="doc-img"><a href="/GiaoVien/ChiTiet/' + item.ID + '" title="' + item.HoTen + '"><img src="' + item.URL + '" alt="' + item.HoTen + '"></a></figure>';
+            element += '<h4><a href="/GiaoVien/ChiTiet/' + item.ID + '">' + item.HoTen + '</a></h4><p>' + item.SoLuoc + '</p><a href="/GiaoVien/ChiTiet/' + item.ID + '" class="readmore">Xem</a></li>';
+        });
+        $('.doc_list ul').html(element);
+    }
+
+    function errorFunc() {
+        alert('Xảy ra lỗi trong quá trình thực hiện!');
+    }
+</script>

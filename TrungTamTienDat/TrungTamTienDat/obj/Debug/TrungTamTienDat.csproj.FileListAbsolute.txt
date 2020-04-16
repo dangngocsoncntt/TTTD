@@ -1,0 +1,167 @@
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\TrungTamTienDat.dll
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\TrungTamTienDat.pdb
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\Antlr3.Runtime.dll
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\DotNetOpenAuth.AspNet.dll
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\DotNetOpenAuth.Core.dll
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\DotNetOpenAuth.OAuth.Consumer.dll
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\DotNetOpenAuth.OAuth.dll
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\DotNetOpenAuth.OpenId.dll
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\EntityFramework.dll
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\Microsoft.Web.Infrastructure.dll
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\Microsoft.Web.WebPages.OAuth.dll
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\Newtonsoft.Json.dll
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Net.Http.dll
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Net.Http.Formatting.dll
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Net.Http.WebRequest.dll
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Web.Helpers.dll
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Web.Http.dll
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Web.Http.WebHost.dll
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Web.Mvc.dll
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Web.Optimization.dll
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Web.Razor.dll
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Web.WebPages.Deployment.dll
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Web.WebPages.dll
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Web.WebPages.Razor.dll
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\WebGrease.dll
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\WebMatrix.Data.dll
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\WebMatrix.WebData.dll
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\EntityFramework.xml
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\Newtonsoft.Json.xml
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Net.Http.xml
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Net.Http.Formatting.xml
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Net.Http.WebRequest.xml
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Web.Helpers.xml
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Web.Http.xml
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Web.Http.WebHost.xml
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Web.Mvc.xml
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Web.Razor.xml
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Web.WebPages.xml
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Web.WebPages.Deployment.xml
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Web.WebPages.Razor.xml
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\WebMatrix.Data.xml
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\Microsoft.Web.WebPages.OAuth.xml
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\WebMatrix.WebData.xml
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\DotNetOpenAuth.AspNet.xml
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\DotNetOpenAuth.Core.xml
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\DotNetOpenAuth.OAuth.Consumer.xml
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\DotNetOpenAuth.OAuth.xml
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\DotNetOpenAuth.OpenId.xml
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\obj\Debug\TrungTamTienDat.dll
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\obj\Debug\TrungTamTienDat.pdb
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\LibModels.dll
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\bin\LibModels.pdb
+D:\Web project\ASP.net\TrungTamTienDat\TrungTamTienDat\TrungTamTienDat\obj\Debug\TrungTamTienDat.csprojResolveAssemblyReference.cache
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\TrungTamTienDat.dll.config
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\TrungTamTienDat.dll
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\TrungTamTienDat.pdb
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\Antlr3.Runtime.dll
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\DotNetOpenAuth.AspNet.dll
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\DotNetOpenAuth.Core.dll
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\DotNetOpenAuth.OAuth.Consumer.dll
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\DotNetOpenAuth.OAuth.dll
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\DotNetOpenAuth.OpenId.dll
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\EntityFramework.dll
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\LibModels.dll
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\Microsoft.Web.Infrastructure.dll
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\Microsoft.Web.WebPages.OAuth.dll
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\Newtonsoft.Json.dll
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Net.Http.dll
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Net.Http.Formatting.dll
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Net.Http.WebRequest.dll
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Web.Helpers.dll
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Web.Http.dll
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Web.Http.WebHost.dll
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Web.Mvc.dll
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Web.Optimization.dll
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Web.Razor.dll
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Web.WebPages.Deployment.dll
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Web.WebPages.dll
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Web.WebPages.Razor.dll
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\WebGrease.dll
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\WebMatrix.Data.dll
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\WebMatrix.WebData.dll
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\LibModels.pdb
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\EntityFramework.xml
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\Newtonsoft.Json.xml
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Net.Http.xml
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Net.Http.Formatting.xml
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Net.Http.WebRequest.xml
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Web.Helpers.xml
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Web.Http.xml
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Web.Http.WebHost.xml
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Web.Mvc.xml
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Web.Razor.xml
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Web.WebPages.xml
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Web.WebPages.Deployment.xml
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\System.Web.WebPages.Razor.xml
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\WebMatrix.Data.xml
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\Microsoft.Web.WebPages.OAuth.xml
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\WebMatrix.WebData.xml
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\DotNetOpenAuth.AspNet.xml
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\DotNetOpenAuth.Core.xml
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\DotNetOpenAuth.OAuth.Consumer.xml
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\DotNetOpenAuth.OAuth.xml
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\DotNetOpenAuth.OpenId.xml
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\obj\Debug\TrungTamTienDat.dll
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\obj\Debug\TrungTamTienDat.pdb
+D:\TTTienDat\TrungTamTienDat\TrungTamTienDat\obj\Debug\TrungTamTienDat.csprojResolveAssemblyReference.cache
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\TrungTamTienDat.dll.config
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\TrungTamTienDat.dll
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\TrungTamTienDat.pdb
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\Antlr3.Runtime.dll
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\DotNetOpenAuth.AspNet.dll
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\DotNetOpenAuth.Core.dll
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\DotNetOpenAuth.OAuth.Consumer.dll
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\DotNetOpenAuth.OAuth.dll
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\DotNetOpenAuth.OpenId.dll
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\EntityFramework.dll
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\LibModels.dll
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\Microsoft.Web.Infrastructure.dll
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\Microsoft.Web.WebPages.OAuth.dll
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\Newtonsoft.Json.dll
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\System.Net.Http.dll
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\System.Net.Http.Formatting.dll
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\System.Net.Http.WebRequest.dll
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\System.Web.Helpers.dll
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\System.Web.Http.dll
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\System.Web.Http.WebHost.dll
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\System.Web.Mvc.dll
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\System.Web.Optimization.dll
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\System.Web.Razor.dll
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\System.Web.WebPages.Deployment.dll
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\System.Web.WebPages.dll
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\System.Web.WebPages.Razor.dll
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\WebGrease.dll
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\WebMatrix.Data.dll
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\WebMatrix.WebData.dll
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\LibModels.pdb
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\EntityFramework.xml
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\Newtonsoft.Json.xml
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\System.Net.Http.xml
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\System.Net.Http.Formatting.xml
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\System.Net.Http.WebRequest.xml
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\System.Web.Helpers.xml
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\System.Web.Http.xml
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\System.Web.Http.WebHost.xml
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\System.Web.Mvc.xml
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\System.Web.Razor.xml
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\System.Web.WebPages.xml
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\System.Web.WebPages.Deployment.xml
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\System.Web.WebPages.Razor.xml
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\WebMatrix.Data.xml
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\Microsoft.Web.WebPages.OAuth.xml
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\WebMatrix.WebData.xml
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\DotNetOpenAuth.AspNet.xml
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\DotNetOpenAuth.Core.xml
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\DotNetOpenAuth.OAuth.Consumer.xml
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\DotNetOpenAuth.OAuth.xml
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\DotNetOpenAuth.OpenId.xml
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\obj\Debug\TrungTamTienDat.csprojResolveAssemblyReference.cache
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\obj\Debug\TrungTamTienDat.dll
+D:\TTTD\TrungTamTienDat\TrungTamTienDat\obj\Debug\TrungTamTienDat.pdb

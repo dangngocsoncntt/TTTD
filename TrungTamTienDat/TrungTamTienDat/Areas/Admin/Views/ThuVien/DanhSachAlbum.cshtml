@@ -1,0 +1,174 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    List<LibModels.Album> l_Album = (List<LibModels.Album>)Model;
+}
+
+<div class="page-title">
+    <div class="title_left">
+        <ol class="breadcrumb" style="font-size:15px;">
+          <li><a href="/Admin/">Trang chủ</a></li>
+          <li>Danh sách album</li>
+        </ol>
+    </div>
+
+    <div class="title_right">
+
+    </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="row">
+
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+        <div class="x_title">
+            <h2>Danh sách album </h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <table id="dsAlbum" class="table table-striped table-bordered table-hover jambo_table">
+                <thead>
+                    <tr>
+                        <th width="10%">STT</th>
+                        <th width="25%">Tên album *</th>
+                        <th width="45%">Mô tả</th>
+                        <th width="10%"></th>
+                        <th width="10%"><center><button style="color:#7387AF;" class="fa fa-plus" id="themRow"></button></center></th>
+                    </tr>
+                </thead>
+
+
+                <tbody>
+                    @{
+                        if (l_Album.Count > 0)
+                        {
+                            int i = 1;
+                            foreach (LibModels.Album a in l_Album)
+                            {
+                                <tr>
+                                    <td>@i</td>
+                                    <td><input type="text" class="validate[required] tenAlbum" style="width:95%" value="@a.TenAlbum" /></td>
+                                    <td>
+                                        <textarea class="moTa" rows="1" style="width:95%">@a.MoTa</textarea>
+                                    </td>
+                                    <td align="center"><a href="#" class="xoaRow" name="@a.ID"><i class="fa fa-close"></i></a></td>
+                                    <td align="center"><button class="fa fa-refresh capNhatRow" name ="@a.ID"></button></td>
+                                </tr>
+                                i++;
+                            }
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+
+    <br />
+    <br />
+    <br />
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        $(document).on('click', '#themRow', function () {
+            var element = '<tr><td>1</td><td><input type="text" class="validate[required] tenAlbum" style="width:95%" value="" /></td><td><textarea class="moTa" rows="1" style="width:95%"></textarea></td>';
+            element += '<td align="center"><a href="#" class="xoaRow" name="0"><i class="fa fa-close"></i></a></td><td align="center"><button class="fa fa-refresh capNhatRow" name="0"></button></td></tr>';
+
+            if ($('#dsAlbum tbody tr').length > 0) {
+                $('#dsAlbum tbody tr:last').after(element);
+                for (i = 0; i < $('#dsAlbum tbody tr').length; i++) {
+                    $('#dsAlbum tbody tr:eq(' + i + ')').find('td:eq(0)').text(i + 1);
+                }
+            }
+            else {
+                $('#dsAlbum tbody').prepend(element);
+            }
+
+            return false;
+        });
+
+        $(document).on('click', '.xoaRow', function () {
+            var element = $(this).parent('td').parent('tr');
+            if ($(this).attr('name') > 0) {
+                if (confirm("Bạn có thực sự muốn xóa!")) {
+                    $(this).prop('disabled', true);
+
+                    $.ajax({
+                        url: "/Admin/ThuVien/album_xoa",
+                        type: 'POST',
+                        contentType: "application/json; charset=utf-8",
+                        dataType: 'json',
+                        data: JSON.stringify({
+                            ID: $(this).attr('name')
+                        }),
+                        success: function (data) {
+                            if (data > 0) {
+                                element.remove();
+                                if ($('#dsAlbum tbody tr').length > 0) {
+                                    for (i = 0; i < $('#dsAlbum tbody tr').length; i++) {
+                                        $('#dsAlbum tbody tr:eq(' + i + ')').find('td:eq(0)').text(i + 1);
+                                    }
+                                }
+                                alert('Xóa album thành công');
+                            }
+                            else errorFunc();
+                        },
+                        error: errorFunc,
+                        async: false
+                    });
+
+                    $(this).prop('disabled', false);
+                }
+            }
+            else {
+                element.remove();
+                if ($('#dsAlbum tbody tr').length > 0) {
+                    for (i = 0; i < $('#dsAlbum tbody tr').length; i++) {
+                        $('#dsAlbum tbody tr:eq(' + i + ')').find('td:eq(0)').text(i + 1);
+                    }
+                }
+            }
+            return false;
+        });
+
+        $(document).on('click', '.capNhatRow', function () {
+            var element = $(this).parent('td').parent('tr');
+            if ($.trim(element.find('.tenAlbum').val()) == '') {
+                element.find('.tenAlbum').validationEngine('showPrompt', 'Tên chủ đề không được để rỗng!', 'error', true);
+            }
+            else {
+                $(this).prop('disabled', true);
+
+                $.ajax({
+                    url: "/Admin/ThuVien/album_capnhat",
+                    type: 'POST',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: 'json',
+                    data: JSON.stringify({
+                        ID: $(this).attr('name'),
+                        TenAlbum: $.trim(element.find('.tenAlbum').val()),
+                        MoTa: $.trim(element.find('.moTa').val())
+                    }),
+                    success: function (data) {
+                        if (data > 0) {
+                            element.find('.capNhatRow').attr('name', data);
+                            element.find('.xoaRow').attr('name', data);
+                            alert('Cập nhật thành công!');
+                        }
+                        else errorFunc();
+                    },
+                    error: errorFunc,
+                    async: false
+                });
+
+                $(this).prop('disabled', false);
+            }
+        });
+    });
+
+    function errorFunc() {
+        alert('Xảy ra lỗi trong quá trình thực hiện!');
+    }
+</script>

@@ -1,0 +1,174 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    List<LibModels.ChuDe> l_ChuDe = (List<LibModels.ChuDe>)Model;
+}
+
+<div class="page-title">
+    <div class="title_left">
+        <ol class="breadcrumb" style="font-size:15px;">
+          <li><a href="/Admin/">Trang chủ</a></li>
+          <li>Danh sách chủ đề bài viết</li>
+        </ol>
+    </div>
+
+    <div class="title_right">
+
+    </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="row">
+
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+        <div class="x_title">
+            <h2>Danh sách chủ đề </h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <table id="dsChuDe" class="table table-striped table-bordered table-hover jambo_table">
+                <thead>
+                    <tr>
+                        <th width="10%">STT</th>
+                        <th width="25%">Tên chủ đề *</th>
+                        <th width="45%">Mô tả</th>
+                        <th width="10%"></th>
+                        <th width="10%"><center><button style="color:#7387AF;" class="fa fa-plus" id="themRow"></button></center></th>
+                    </tr>
+                </thead>
+
+
+                <tbody>
+                    @{
+                        if (l_ChuDe.Count > 0)
+                        {
+                            int i = 1;
+                            foreach (LibModels.ChuDe cd in l_ChuDe)
+                            {
+                                <tr>
+                                    <td>@i</td>
+                                    <td><input type="text" class="validate[required] tenChuDe" style="width:95%" value="@cd.TenChuDe" /></td>
+                                    <td>
+                                        <textarea class="moTa" rows="1" style="width:95%">@cd.MoTa</textarea>
+                                    </td>
+                                    <td align="center"><a href="#" class="xoaRow" name="@cd.ID"><i class="fa fa-close"></i></a></td>
+                                    <td align="center"><button class="fa fa-refresh capNhatRow" name ="@cd.ID"></button></td>
+                                </tr>
+                                i++;
+                            }
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+
+    <br />
+    <br />
+    <br />
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        $(document).on('click', '#themRow', function () {
+            var element = '<tr><td>1</td><td><input type="text" class="validate[required] tenChuDe" style="width:95%" value="" /></td><td><textarea class="moTa" rows="1" style="width:95%"></textarea></td>';
+            element += '<td align="center"><a href="#" class="xoaRow" name="0"><i class="fa fa-close"></i></a></td><td align="center"><button class="fa fa-refresh capNhatRow" name="0"></button></td></tr>';
+            
+            if ($('#dsChuDe tbody tr').length > 0) {
+                $('#dsChuDe tbody tr:last').after(element);
+                for (i = 0; i < $('#dsChuDe tbody tr').length; i++) {
+                    $('#dsChuDe tbody tr:eq(' + i + ')').find('td:eq(0)').text(i + 1);
+                }
+            }
+            else {
+                $('#dsChuDe tbody').prepend(element);
+            }
+
+            return false;
+        });
+
+        $(document).on('click', '.xoaRow', function () {
+            var element = $(this).parent('td').parent('tr');
+            if ($(this).attr('name') > 0) {
+                if (confirm("Bạn có thực sự muốn xóa!")) {
+                    $(this).prop('disabled', true);
+
+                    $.ajax({
+                        url: "/Admin/BaiViet/chude_xoa",
+                        type: 'POST',
+                        contentType: "application/json; charset=utf-8",
+                        dataType: 'json',
+                        data: JSON.stringify({
+                            ID: $(this).attr('name')
+                        }),
+                        success: function (data) {
+                            if (data > 0) {
+                                element.remove();
+                                if ($('#dsChuDe tbody tr').length > 0) {
+                                    for (i = 0; i < $('#dsChuDe tbody tr').length; i++) {
+                                        $('#dsChuDe tbody tr:eq(' + i + ')').find('td:eq(0)').text(i + 1);
+                                    }
+                                }
+                                alert('Xóa chủ đề thành công');
+                            }
+                            else errorFunc();
+                        },
+                        error: errorFunc,
+                        async: false
+                    });
+
+                    $(this).prop('disabled', false);
+                }
+            }
+            else {
+                element.remove();
+                if ($('#dsChuDe tbody tr').length > 0) {
+                    for (i = 0; i < $('#dsChuDe tbody tr').length; i++) {
+                        $('#dsChuDe tbody tr:eq(' + i + ')').find('td:eq(0)').text(i + 1);
+                    }
+                }
+            }
+            return false;
+        });
+
+        $(document).on('click', '.capNhatRow', function () {
+            var element = $(this).parent('td').parent('tr');
+            if ($.trim(element.find('.tenChuDe').val()) == '') {
+                element.find('.tenChuDe').validationEngine('showPrompt', 'Tên chủ đề không được để rỗng!', 'error', true);
+            }
+            else {
+                $(this).prop('disabled', true);
+
+                $.ajax({
+                    url: "/Admin/BaiViet/chude_capnhat",
+                    type: 'POST',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: 'json',
+                    data: JSON.stringify({
+                        ID: $(this).attr('name'),
+                        TenChuDe: $.trim(element.find('.tenChuDe').val()),
+                        MoTa: $.trim(element.find('.moTa').val())
+                    }),
+                    success: function (data) {
+                        if (data > 0) {
+                            element.find('.capNhatRow').attr('name', data);
+                            element.find('.xoaRow').attr('name', data);
+                            alert('Cập nhật thành công!');
+                        }
+                        else errorFunc();
+                    },
+                    error: errorFunc,
+                    async: false
+                });
+
+                $(this).prop('disabled', false);
+            }
+        });
+    });
+
+    function errorFunc() {
+        alert('Xảy ra lỗi trong quá trình thực hiện!');
+    }
+</script>

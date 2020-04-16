@@ -1,0 +1,369 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    List<LibModels.MonHoc> l_MonHoc = new LibModels.MonHoc().GetList();
+    LibModels.LopHoc lopHoc = new LibModels.LopHoc();
+    var res = ViewContext.RouteData.Values["id"];
+    if (res != null)
+    {
+        lopHoc = (LibModels.LopHoc)Model;
+    }
+}
+
+<div class="page-title">
+    <div class="title_left">
+        <ol class="breadcrumb" style="font-size:15px;">
+          <li><a href="/Admin/">Trang chủ</a></li>
+          <li>Cập nhật lớp học</li>
+        </ol>
+    </div>
+
+    <div class="title_right">
+        <input type="text" id="ID" value="@(ViewContext.RouteData.Values["id"])" style="display: none;" />
+    </div>
+</div>
+<div class="clearfix"></div>
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+        <div class="x_title">
+            <h2>Quản lý lớp học</h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+
+            <form id="form" class="form-horizontal form-label-left" novalidate>
+                <center style="margin-bottom: 20px;">
+                    @if (res == null)
+                    {
+                        <h3>TẠO MỚI LỚP HỌC</h3>
+                    }
+                    else{
+                        <h3>CẬP NHẬT LỚP HỌC</h3>
+                    }
+                </center>
+
+                <div class="item form-group">
+                    <div class="col-md-offset-1 col-md-11 col-xs-12">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="last-name">Tên lớp học <span class="required">*</span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">               
+                            @if (res == null)
+                            {
+                                <input type="text" id="tenLopHoc" class="form-control col-md-7 col-xs-12 validate[required]" maxlength="100" />
+                            }
+                            else{
+                                <input type="text" id="tenLopHoc" class="form-control col-md-7 col-xs-12 validate[required]" maxlength="100" value="@lopHoc.TenLopHoc" />
+                            }               
+                        </div>
+                    </div>         
+                </div>
+                <div class="item form-group">
+                    <div class="col-md-offset-1 col-md-11 col-xs-12">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="last-name">Ngày nhận 
+                        </label>
+                        <div class="col-md-4 col-sm-4 col-xs-12">               
+                            @if (res == null)
+                            {
+                                <input type="text" id="ngayNhan" class="form-control col-md-7 col-xs-12 dateinput" />
+                            }
+                            else{
+                                <input type="text" id="ngayNhan" class="form-control col-md-7 col-xs-12 dateinput" value="@lopHoc.NgayNhan" />
+                            }               
+                        </div>
+
+                        <label class="control-label col-md-1 col-sm-1 col-xs-12" for="last-name">Hạn chót 
+                        </label>
+                        <div class="col-md-4 col-sm-4 col-xs-12">               
+                            @if (res == null)
+                            {
+                                <input type="text" id="hanChot" class="form-control col-md-7 col-xs-12 dateinput" />
+                            }
+                            else{
+                                <input type="text" id="hanChot" class="form-control col-md-7 col-xs-12 dateinput" value="@lopHoc.HanChot" />
+                            }               
+                        </div>
+                    </div>         
+                </div>
+                <div class="item form-group">
+                    <div class="col-md-offset-1 col-md-11 col-xs-12">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="last-name">Ngày nhập học <span class="required">*</span>
+                        </label>
+                        <div class="col-md-4 col-sm-4 col-xs-12">               
+                            @if (res == null)
+                            {
+                                <input type="text" id="ngayNhapHoc" class="form-control col-md-7 col-xs-12 validate[required] dateinput" />
+                            }
+                            else{
+                                <input type="text" id="ngayNhapHoc" class="form-control col-md-7 col-xs-12 validate[required] dateinput" value="@lopHoc.NgayNhapHoc" />
+                            }               
+                        </div>
+
+                        <label for="middle-name" class="control-label col-md-1 col-sm-1 col-xs-12">Môn học</label>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <select class="form-control selectpicker" id="monHoc" data-live-search="true">
+                                @{
+                                if (l_MonHoc.Count > 0)
+                                    {
+                                        foreach (LibModels.MonHoc mh in l_MonHoc)
+                                        {
+                                            if (res != null && lopHoc.MonHocID == mh.ID)
+                                            {
+                                                <option selected="selected" value="@mh.ID">@mh.TenMonHoc</option>
+                                            }
+                                            else {
+                                                <option value="@mh.ID">@mh.TenMonHoc</option>
+                                            }
+                                        }
+                                    }
+                                }
+                            </select> 
+                        </div>
+                    </div>         
+                </div>
+                <div class="item form-group">
+                    <div class="col-md-offset-1 col-md-11 col-xs-12">
+                        <label for="middle-name" class="control-label col-md-2 col-sm-2 col-xs-12">Lịch học <span class="required">*</span></label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            @if (res == null)
+                            {
+                                <textarea id="lichHoc" class="form-control col-md-7 col-xs-12 validate[required]" maxlength="500"></textarea>
+                            }
+                            else{
+                                <textarea id="lichHoc" class="form-control col-md-7 col-xs-12 validate[required]" maxlength="500">@lopHoc.LichHoc</textarea>
+                            } 
+                        </div>
+                    </div>     
+                </div>
+                <div class="item form-group">
+                    <div class="col-md-offset-1 col-md-11 col-xs-12">
+                        <label for="middle-name" class="control-label col-md-2 col-sm-2 col-xs-12">Mô tả chi tiết </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            @if (res == null)
+                            {
+                                <textarea id="moTa" class="form-control col-md-7 col-xs-12 validate[required]"></textarea>
+                            }
+                            else{
+                                <textarea id="moTa" class="form-control col-md-7 col-xs-12 validate[required]">@lopHoc.MoTa</textarea>
+                            } 
+                        </div>
+                    </div>     
+                </div>
+
+                <div class="item form-group">
+                    <div class="col-md-offset-1 col-md-11 col-xs-12">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="last-name">Học phí <span class="required">*</span>
+                        </label>
+                        <div class="col-md-4 col-sm-4 col-xs-12">               
+                            @if (res == null)
+                            {
+                                <input type="text" id="hocPhi" class="form-control col-md-7 col-xs-12 validate[required] auto" maxlength="14" />
+                            }
+                            else{
+                                <input type="text" id="hocPhi" class="form-control col-md-7 col-xs-12 validate[required] auto" maxlength="14" value="@lopHoc.HocPhi" />
+                            }               
+                        </div>
+
+                        <label for="middle-name" class="control-label col-md-2 col-sm-2 col-xs-12">Loại học phí <span class="required">*</span></label>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <select class="form-control selectpicker" id="loaiHocPhi" data-live-search="true">
+                                @if (res == null)
+                                {
+                                    <option value="1">Theo buổi</option>
+                                    <option value="2">Theo khóa</option>
+                                }
+                                else
+                                {
+                                    if (lopHoc.LoaiHocPhiID == 1) {
+                                        <option value="1" selected="selected">Theo buổi</option>
+                                        <option value="2">Theo khóa</option>
+                                    }
+                                    else {
+                                        <option value="1">Theo buổi</option>
+                                        <option value="2" selected="selected">Theo khóa</option>
+                                    }
+                                }   
+                                
+                            </select> 
+                        </div>
+                    </div>         
+                </div>
+
+                @*<div class="item form-group">
+                    <div class="col-md-offset-1 col-md-11 col-xs-12">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="last-name">Khối <span class="required">*</span>
+                        </label>
+                        <div class="col-md-4 col-sm-4 col-xs-12">               
+                            <select class="form-control selectpicker" id="khoi" data-live-search="true">
+                                @if (res == null)
+                                {
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                }
+                                else
+                                {
+                                    if (lopHoc.Khoi == 10) {
+                                        <option value="10" selected="selected">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                    }
+                                    if (lopHoc.Khoi == 11)
+                                    {
+                                        <option value="10">10</option>
+                                        <option value="11" selected="selected">11</option>
+                                        <option value="12">12</option>
+                                    }
+                                    if (lopHoc.Khoi == 12)
+                                    {
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12" selected="selected">12</option>
+                                    }
+                                }
+                            </select>          
+                        </div>
+                    </div>         
+                </div>*@
+
+                <div class="item form-group">
+                    <div class="col-md-offset-1 col-md-11 col-xs-12">
+                        <label for="middle-name" class="control-label col-md-2 col-sm-2 col-xs-12">Cho phép đăng ký</label>
+                        <div class="col-md-1 col-sm-3 col-xs-12">
+                            <input type="checkbox" id="nhanHocVien" checked="checked" class="form-control" />
+                        </div>
+                    </div>     
+                </div>
+
+                <div class="ln_solid"></div>
+                <p style="color:red; text-tra"><i>Những trường có dấu (*) là những trường bắt buộc cần điền</i></p>
+                <div class="form-group">
+                    <div class="col-md-6 col-md-offset-3">
+                        <button id="cancel" class="btn btn-primary">Trở về</button>
+                        <button id="submit" type="submit" class="btn btn-success">Xác nhận</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Sự kiện nhấn nút enter
+    $(document).keydown(function (e) {
+        if (e.which == 13) {
+            $('#submit').click();
+        }
+    });
+    //Xử lý nhập ngày tháng
+    $(document).on("change", ".dateinput", function () {
+        if ($(this).val().length == 6) {
+            dateRegex = /^(?=\d)(?:(?:31(?!.(?:0?[2469]|11))|(?:30|29)(?!.0?2)|29(?=.0?2.(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00)))(?:\x20|$))|(?:2[0-8]|1\d|0?[1-9]))([-.\/])(?:1[012]|0?[1-9])\1(?:1[6-9]|[2-9]\d)?\d\d(?:(?=\x20\d)\x20|$))?(((0?[1-9]|1[012])(:[0-5]\d){0,2}(\x20[AP]M))|([01]\d|2[0-3])(:[0-5]\d){1,2})?$/;
+            day = $(this).val().substring(0, 2);
+            month = $(this).val().substring(2, 4);
+            year = $(this).val().substring(4, 6);
+
+            if (dateRegex.test(day + '/' + month + '/20' + year)) {
+                $(this).val(day + '/' + month + '/20' + year);
+            }
+            else {
+                $(this).validationEngine('showPrompt', 'Ngày tháng không tồn tại!', 'error', true);
+                $(this).val('');
+            }
+        }
+        else {
+            $(this).validationEngine('showPrompt', 'Ngày tháng không đúng định dạng!', 'error', true);
+            $(this).val('');
+        }
+    });
+
+    $(document).ready(function () {
+        if ($.trim($('#ngayNhan').val()) == '01/01/1900') {
+            $('#ngayNhan').val("");
+        }
+        if ($.trim($('#hanChot').val()) == '01/01/1900') {
+            $('#hanChot').val("");
+        }
+
+        $('#cancel').click(function () {
+            $("#form").validationEngine('detach');
+            window.location.href = '/Admin/';
+            return false;
+        });
+
+        $('#submit').click(function () {
+            if ($.trim($("#tenLopHoc").val()) != '' && $.trim($("#ngayNhapHoc").val()) != '' && $.trim($("#lichHoc").val()) != '' && $("#hocPhi").val() != '') {
+                $('#submit').prop('disabled', true);
+                var moTa = (CKEDITOR.instances['moTa'].getData() != '') ? CKEDITOR.instances['moTa'].getData() : '';
+                var id = ($('#ID').val() != '') ? $('#ID').val() : 0;
+                var ngayNhan = ($.trim($('#ngayNhan').val()) != '') ? $.trim($('#ngayNhan').val()) : '';
+                var hanChot = ($.trim($('#hanChot').val()) != '') ? $.trim($('#hanChot').val()) : '';
+                var nhanHocVien = ($("#nhanHocVien").is(':checked')) ? true : false;
+
+                $.ajax({
+                    url: "/Admin/LopHoc/lophoc_capnhat",
+                    type: 'POST',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: 'json',
+                    data: JSON.stringify({
+                        ID: id,
+                        TenLopHoc: $.trim($("#tenLopHoc").val()),
+                        NgayNhan: ngayNhan,
+                        HanChot: hanChot,
+                        NgayNhapHoc: $("#ngayNhapHoc").val(),
+                        MonHocID: $('#monHoc').val(),
+                        LichHoc: $.trim($("#lichHoc").val()),
+                        MoTa: moTa,
+                        HocPhi: $("#hocPhi").val().split(",").join(""),
+                        LoaiHocPhiID: $('#loaiHocPhi').val(),
+                        NhanHocVien: nhanHocVien,
+                        Khoi: '10'
+                    }),
+                    success: function (data) {
+                        if (data > 0) {
+                            alert('Cập nhật thành công!');
+                            window.location.href = '/Admin/';
+                        }
+                        else {
+                            alert('Cập nhật không thành công!');
+                        }
+                    },
+                    error: function () {
+                        alert("Xảy ra lỗi trong quá trình thực hiện!");
+                    },
+                    async: false
+                });
+
+                $('#submit').prop('disabled', false);
+            }
+            else {
+                alert('Xin hãy điền đầy đủ thông tin bài viết!');
+            }
+            return false;
+        });
+    });
+</script>
+
+<!-- Auto numeric -->
+<script src="~/js/autoNumeric-min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.auto').autoNumeric('init', { aSep: ',', aDec: '.', mDec: '0' });
+    });
+</script>
+
+<!-- Khai báo CKEditor -->
+<script src="~/Content/ckeditor/ckeditor.js"></script>
+<script type="text/javascript">
+    var editor;
+    function createEditor(languageCode, id) {
+        var editor = CKEDITOR.replace(id, {
+            language: languageCode
+        });
+    }
+
+    $(function () {
+        createEditor('vi', 'moTa');
+    });
+</script>
