@@ -1,0 +1,171 @@
+﻿@model TrungTamTienDat.Areas.Admin.Models.AnyModel
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    List<LibModels.Album> l_Album = new LibModels.Album().GetList("");
+}
+
+<style type="text/css">
+    #selectedFiles img
+    {
+        max-width: 200px;
+        max-height: 200px;
+        float: left;
+        margin-bottom: 10px;
+    }
+
+    input[type='file']
+    {
+        color: transparent;
+    }
+</style>
+
+<div class="page-title">
+    <div class="title_left">
+        <ol class="breadcrumb" style="font-size:15px;">
+          <li><a href="/Admin/">Trang chủ</a></li>
+          <li>Upload ảnh thư viện</li>
+        </ol>
+    </div>
+
+    <div class="title_right">
+    </div>
+</div>
+<div class="clearfix"></div>
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+        <div class="x_title">
+            <h2>Quản lý thư viện</h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+
+            @using (Html.BeginForm("UploadAction", "ThuVien", FormMethod.Post, new { enctype = "multipart/form-data", id = "frmID" }))
+            {
+                @Html.HiddenFor(i => i.FilesToBeUploaded)
+
+                <div class="item form-group">
+                    <div class="col-md-offset-1 col-md-11 col-xs-12">
+                        <label for="middle-name" class="control-label col-md-2 col-sm-2 col-xs-12">Chọn album <span class="required">*</span></label>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <select class="form-control selectpicker" name="AlbumID" data-live-search="true">
+                                @{
+                                    if (l_Album.Count > 0)
+                                    {
+                                        foreach (LibModels.Album a in l_Album)
+                                        {
+                                            <option value="@a.ID">@a.TenAlbum</option>
+                                        }
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>     
+                </div>
+                <br /><br />
+                <div class="item form-group">
+                    <div class="col-md-offset-1 col-md-11 col-xs-12">
+                        <label for="middle-name" class="control-label col-md-2 col-sm-2 col-xs-12">Chọn ảnh từ máy tính <span class="required">*</span></label>
+                        <div class="col-md-6 col-sm-9 col-xs-12">
+                            <div id="uploaders">
+                                <input type="file" id="fileToUpload" name="fileUpload" multiple="multiple" style="float: left;" />
+                                <br />
+                                <span id="spnFile" style="float: left; color: #FF0000"></span>
+                                @Html.ValidationMessage("File")
+                                @Html.Hidden("hdnFileUpload")
+                            </div>
+                            <br /><br />
+                            <div class="control-section" style="padding: 0px;">
+                                <div id="selectedFiles"></div>
+                            </div>
+                        </div>
+                    </div>     
+                </div>
+
+                <div class="col-lg-6">
+                    <button class="btn btn-primary" id="btnAddIssue" type="submit">Upload</button>
+                </div>
+            }
+        </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var nowTemp = new Date();
+    var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+    var files;
+    var storedFiles = [];
+    var upc = 0;
+
+    $(function () {
+
+        $(":file").attr('title', '  ');
+        var $loading = $('#loadingDiv').hide();
+
+        $("input[id^='fileToUpload']").change(function (e) {
+            // Kiểm tra xem có phải định dạng ảnh hay không
+            var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'bmp'];
+            if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+                alert("Only formats are allowed : " + fileExtension.join(', '));
+                return false;
+            }
+            else doReCreate(e);
+        });
+
+        selDiv = $("#selectedFiles");
+    });
+
+
+    function doReCreate(e) {
+        upc = upc + 1;
+        handleFileSelect(e);
+
+        $("input[id^='fileToUpload']").hide();
+
+        $('<input>').attr({
+            type: 'file',
+            multiple: 'multiple',
+            id: 'fileToUpload' + upc,
+            class: 'fUpload',
+            name: 'fileUpload',
+            style: 'float: left',
+            title: '  ',
+            onchange: "doReCreate(event)"
+
+        }).appendTo('#uploaders');
+    }
+
+
+    function handleFileSelect(e) {
+
+        //selDiv.innerHTML = ""; storedFiles = []; 
+        selDiv = document.querySelector("#selectedFiles");
+
+        if (!e.target.files) return;
+
+        //selDiv.innerHTML = "";
+        files = e.target.files;
+
+        for (var i = 0; i < files.length; i++) {
+            //if (i == 0) { selDiv.innerHTML = ""; storedFiles = []; }
+            var f = files[i];
+            selDiv.innerHTML += "<div>" + f.name + "<a onclick='removeAtt(this)' style='cursor: pointer;'> <i class='fa fa-close'></i> </a></div>";
+            storedFiles.push(f.name);
+        }
+        $('#@Html.IdFor(i => i.FilesToBeUploaded)').val(storedFiles);
+    }
+
+    function removeAtt(t) {
+        var serEle = $(t).parent().text().slice(0, -3);
+        var index = storedFiles.indexOf(serEle);
+        if (index !== -1) {
+            storedFiles.splice(index, 1);
+        }
+        $(t).parent().remove();
+
+        $('#@Html.IdFor(i => i.FilesToBeUploaded)').val(storedFiles);
+
+    }
+</script>

@@ -1,0 +1,282 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    List<LibModels.DangKy> l_HocVien = (List<LibModels.DangKy>)Model;
+    List<LibModels.LopHoc> l_LopHoc = new LibModels.LopHoc().GetList("", 0, "", 0);
+}
+
+<div class="page-title">
+    <div class="title_left">
+        <ol class="breadcrumb" style="font-size:15px;">
+          <li><a href="/Admin/">Trang chủ</a></li>
+          <li class="active">Danh sách học viên</li>
+        </ol>
+    </div>
+
+    <div class="title_right">
+
+    </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="row">
+
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+        <div class="x_title">
+            <h2>Danh sách học viên </h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <form id="form" class="form-horizontal form-label-left" novalidate>
+
+                <div class="form-group">
+                    <div class="col-md-12 col-xs-12">
+                        <label for="middle-name" class="control-label col-md-2 col-sm-2 col-xs-12">Họ tên </label>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <input type="text" id="hoTen" class="form-control col-md-7 col-xs-12" placeholder="--Tất cả--" />
+                        </div>
+                        <label for="middle-name" class="control-label col-md-2 col-sm-2 col-xs-12">Lớp học </label>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <select class="form-control selectpicker" id="lopHoc" data-live-search="true">
+                                <option value="0">--Tất cả--</option>
+                                @{
+                                    if (l_LopHoc.Count > 0)
+                                    {
+                                        foreach (LibModels.LopHoc lh in l_LopHoc)
+                                        {
+                                            <option value="@lh.ID">@lh.TenLopHoc</option>
+                                        }
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>  
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-3 col-xs-12">
+                        <button id="search" class="btn btn-warning"><span class="fa fa-search"></span> Tìm kiếm </button>
+                    </div>
+                </div>
+            </form>
+            
+            <div class="ln_solid"></div>
+            <table id="datatable" class="table table-striped table-bordered table-hover jambo_table">
+                <thead>
+                    <tr>
+                        <th width="6%">STT</th>
+                        <th>Họ tên</th>
+                        <th>Lớp</th>
+                        <th>Tuổi</th>
+                        <th>Địa chỉ</th>
+                        <th>Email</th>
+                        <th>Số điện thoại</th>
+                        <th>Ngày đăng ký</th>
+                        <th>IP</th>
+                        <th width="5%"><input type="checkbox" id="checkAll"  class="tableflat" /></th>
+                    </tr>
+                </thead>
+
+                
+                <tbody>
+                    @{
+                        if (l_HocVien != null && l_HocVien.Count > 0)
+                        {
+                            int i = 1;
+                            foreach (LibModels.DangKy hv in l_HocVien)
+                            {
+                                <tr>
+                                    <td>@i</td>
+                                    <td>@hv.HoTen</td>
+                                    <td>@hv.TenLopHoc</td>
+                                    <td>@hv.Tuoi</td>
+                                    <td>@hv.DiaChi</td>
+                                    <td>@hv.Email</td>
+                                    <td>@hv.SDT</td>
+                                    <td>@hv.NgayDangKy</td>
+                                    <td>@hv.TenTrangThai</td>
+                                    <td><input type="checkbox" class="cb" id="@hv.ID" /></td>
+                                </tr>
+                                    i++;
+                            }
+                        }
+                    }
+                </tbody>
+            </table>
+            <button class="btn btn-success" id="activate">Kích hoạt</button>
+            <button class="btn btn-danger" id="delete">Xóa</button>
+        </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
+</div>
+
+<script>
+    reset();
+
+    // Sự kiện nhấn nút enter
+    $(document).keypress(function (e) {
+        if (e.which == 13) {
+            $('#search').click();
+        }
+    });
+
+    $(document).ready(function () {
+        // Xử lý tìm kiếm
+        $('#search').click(function () {
+            $('tbody').html('<tr><td colspan="10" align="center"><img src="/images/loading.gif" /></td></tr>');
+
+            var hoTen = ($.trim($('#hoTen').val()) != '') ? $.trim($('#hoTen').val()) : "";
+            var lopHocID = ($('#lopHoc').val() != '') ? $('#lopHoc').val() : 0;
+
+            $.ajax({
+                url: "/Admin/LopHoc/hocvien_search",
+                type: 'POST',
+                contentType: "application/json; charset=utf-8",
+                dataType: 'json',
+                data: JSON.stringify({
+                    TenHocVien: hoTen,
+                    LopHocID: lopHocID,
+                }),
+                success: successSearchFunc,
+                error: errorFunc,
+                async: false
+            });
+            return false;
+        });
+        // Xử lý kích hoạt
+        $('#activate').click(function () {
+            var checkList = "";
+            $('input[type=checkbox].cb').each(function () {
+                if ($(this).is(':checked')) {
+                    checkList += $(this).attr('id') + ",";
+                }
+            });
+            checkList = checkList.substr(0, checkList.length - 1);
+            if (checkList.length > 0) {
+                if (confirm("Bạn có thực sự muốn thao tác!")) {
+                    $.ajax({
+                        url: "/Admin/LopHoc/dangky_kichhoat",
+                        type: 'POST',
+                        contentType: "application/json; charset=utf-8",
+                        dataType: 'json',
+                        data: JSON.stringify({
+                            param: checkList
+                        }),
+                        success: successActivateFunc,
+                        error: errorFunc,
+                        async: false
+                    });
+                }
+                return false;
+            }
+            else {
+                alert('Bạn chưa chọn mục nào để xóa!');
+            }
+        });
+        // Xử lý xóa
+        $('#delete').click(function () {
+            var checkList = "";
+            $('input[type=checkbox].cb').each(function () {
+                if ($(this).is(':checked')) {
+                    checkList += $(this).attr('id') + ",";
+                }
+            });
+            checkList = checkList.substr(0, checkList.length - 1);
+            if (checkList.length > 0) {
+                if (confirm("Bạn có thực sự muốn xóa!")) {
+                    $.ajax({
+                        url: "/Admin/LopHoc/dangky_xoa",
+                        type: 'POST',
+                        contentType: "application/json; charset=utf-8",
+                        dataType: 'json',
+                        data: JSON.stringify({
+                            param: checkList
+                        }),
+                        success: successDeleteFunc,
+                        error: errorFunc,
+                        async: false
+                    });
+                }
+                return false;
+            }
+            else {
+                alert('Bạn chưa chọn mục nào để xóa!');
+            }
+        });
+
+        $('#datatable').on('page.dt', function () {
+            $('#checkAll').prop('checked', false);
+            $('input[type=checkbox].cb').each(function () {
+                $(this).prop('checked', false);
+            });
+        });
+
+        $('#checkAll').click(function () {
+            if ($(this).is(':checked')) {
+                $('input[type=checkbox].cb').each(function () {
+                    $(this).prop('checked', true);
+                });
+            }
+            else {
+                $('input[type=checkbox].cb').each(function () {
+                    $(this).prop('checked', false);
+                });
+            }
+        });
+    });
+
+    function refreshData(data) {
+        var list = data;
+        var i = 1;
+        $('tbody').html("");
+        var myTable = $('#datatable').dataTable();
+        myTable.fnClearTable();
+
+        $.each(list, function (index, item) {
+            myTable.fnAddData([
+            i,
+            item.HoTen,
+            item.TenLopHoc,
+            item.Tuoi,
+            item.DiaChi,
+            item.Email,
+            item.SDT,
+            item.NgayDangKy,
+            item.TenTrangThai,
+            '<input type="checkbox" class="cb" id="' + item.HocVienID + '" />'
+            ])
+
+            i++;
+        });
+        reset();
+    }
+
+    function successSearchFunc(data) {
+        refreshData(data);
+    }
+
+    function successActivateFunc(data) {
+        alert("Thao tác thành công!");
+        refreshData(data);
+    }
+
+    function successDeleteFunc(data) {
+        var list = data;
+        refreshData(data);
+    }
+
+    function errorFunc() {
+        alert('Xảy ra lỗi trong quá trình thực hiện!');
+    }
+
+    function reset() {
+        $('#hoTen').val("");
+        $('input[type=checkbox].cb').each(function () {
+            $(this).prop('checked', false);
+        });
+        $('#checkAll').prop('checked', false);
+    }
+</script>

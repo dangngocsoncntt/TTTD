@@ -1,0 +1,180 @@
+﻿@{
+    LibModels.GiaoVien gv = (LibModels.GiaoVien)Model;
+    List<LibModels.BaiViet> l_BaiViet = new LibModels.BaiViet().GetRecentList();
+}
+
+<input type="text" id="chiTiet" style="display: none;" value="@((gv.ChiTiet != null) ? gv.ChiTiet : "")" />
+<br /><br />
+                        
+<div id="container" class="clearfix">
+    <div id="content" class="doctor-page">
+		<article id="post-example" class="hentry clearfix">
+			<div class="doctor-img">													
+                <a href="@((gv.URL != null) ? gv.URL : "")" title="@((gv.HoTen != null) ? gv.HoTen : "")" class="pretty-photo"><img class="img-border" src="@((gv.URL != null) ? gv.URL : "")" alt="@((gv.HoTen != null) ? gv.HoTen : "")"></a>      
+                <a href="@gv.Twitter" target="_blank" class="twitter"></a>
+                <a href="@gv.Facebook" target="_blank" class="facebook"></a>
+			</div>
+                                            																
+            <h4>@((gv.HoTen != null) ? gv.HoTen : "") - @((gv.Tuoi != null) ? gv.Tuoi.ToString() : "") tuổi</h4>
+            <p>@((gv.SoLuoc != null) ? gv.SoLuoc : "")</p>
+            <h4>Học vị : <span style="font-size: 13px; line-height: 21px; font-weight:normal; color: #808080">@((gv.HocVi != null) ? gv.HocVi.ToUpper() : "")</span></h4>
+            <h4>Nơi công tác hiện tại : </h4>
+            <p>@((gv.NoiCongTac != null) ? gv.NoiCongTac : "")</p>
+		</article>	
+    </div>
+                                
+    <aside id="sidebar">                                        
+        <section class="widget">
+            <h3 class="title">Bài viết gần đây</h3>
+            @if (l_BaiViet.Count > 0)
+            {
+                foreach (LibModels.BaiViet bv in l_BaiViet)
+                {
+                    <div class="sidebar-post clearfix">                     
+                        <a href="#"><img  src="@bv.URL" alt="Post Image" style="width: 58px; height: 40px;"></a>
+                        <div class="sidebar-post-text">
+                            <a href="/BaiViet/ChiTiet/@bv.ID">@bv.TieuDe</a>
+                            <span class="date">@bv.NgayDang</span>
+                        </div>
+                    </div>
+                }
+                
+            }
+        </section>
+                                                          
+        <section class="widget" style="margin-top: 12px;"><h3 class="title">Đăng ký online</h3>       
+            <div class="newsletter">                  
+                <form id="newsletter" method="post" novalidate>
+                    <p>Tìm kiếm lớp học và đăng ký tại đây</p>
+                    <p>
+                        <input type="button" id="dangKy" value="Xem danh sách lớp học" class="readmore">
+                    </p>
+                    <div class="error-container"></div>
+                </form>
+            </div>               
+        </section>     
+                                    
+        <section class="widget">                   
+            <div class="appointment">
+                <div class="header">
+                    <center><h2>Đánh giá & phản hồi</h2></center>
+                    <h3 class="number">090.328.8866</h3>
+                </div>
+                <form id="appoint-form" method="post">
+                    <p>
+                        <label class="display-ie8" for="apo_name">Họ tên</label>
+                        <input type="text" name="apo_name" class="validate[required]" id="hoTen" maxlength="50" placeholder="Họ tên" />
+                    </p>
+                    <p>
+                        <label class="display-ie8" for="apo_phone">Tuổi</label>
+                        <input type="text" name="apo_phone" class="validate[required]" id="tuoi" maxlength="3" placeholder="Tuổi" />
+                    </p>
+                    <p>
+                        <label class="display-ie8" for="apo_email">Địa chỉ</label>
+                        <input  type="text" name="apo_email"  class="validate[required]"id="diaChi" maxlength="200" placeholder="Địa chỉ" />
+                    </p>
+                    <p>
+                        <label class="display-ie8" for="apo_date">"Tiêu đề</label>
+                        <input type="text" name="apo_date" class="validate[required]" id="tieuDe" maxlength="100" placeholder="Tiêu đề" />
+                    </p>
+                    <p>
+                        <label class="display-ie8" for="apo_date">Nội dung</label>
+                        <textarea name="message" class="validate[required]" cols="30" rows="5" id="noiDung" maxlength="500" placeholder="Nội dung"></textarea>
+                    </p>
+                                                            
+                    <div class="captcha-container">
+                        <div id="divGenerateRandomValues"></div>
+                        <a href="#" id="reloadCaptcha"><img src="/images/refreshCaptcha.png" /></a>
+                        <input type="text" class="captcha validate[required]" id="captchaInput" maxlength="5"/>
+                    </div>
+                                                            
+                    <p>
+                        <input type="submit" value="Gửi phản hồi" id="submit" class="readmore">
+                    </p>
+                </form>
+            </div>                             
+        </section>
+    </aside> 
+								
+</div><!-- end of container -->
+
+<script>
+    $(document).ready(function () {
+        $('#content article').append($('#chiTiet').val());
+
+        $(document).on("input", "#tuoi", function () {
+            this.value = this.value.replace(/[^0-9\.]/g, '');
+        });
+
+        var iNumber = Math.floor(Math.random() * 100000);
+        $("#divGenerateRandomValues").css({ "background-image": 'url(/images/captcha-bg.jpg)', 'width': '140px', 'height': '45px', 'margin-bottom': '15px', 'float': 'left' });
+        $("#divGenerateRandomValues").html("<input id='txtCaptcha'></input>");  
+        $("#txtCaptcha").css({ 'background': 'transparent', 'font-family': 'goodbye', 'font-style': 'bold', 'font-size': '36px' });
+        $("#txtCaptcha").css({ 'width': '140px', 'border': 'none', 'color': 'black', 'text-align': 'center' });
+        $("#txtCaptcha").val(iNumber);
+        $("#txtCaptcha").prop('disabled', true);
+        
+        $('#reloadCaptcha').click(function () {
+            iNumber = Math.floor(Math.random() * 100000);
+            $("#txtCaptcha").val(iNumber);
+            return false;
+        });
+
+        $("#submit").click(function () {
+            $(this).prop('disabled', true);
+            if ($.trim($("#hoTen").val()) != '' && $.trim($("#tuoi").val()) != '' && $.trim($("#diaChi").val()) != '' && $.trim($("#tieuDe").val()) != '' && $.trim($("#noiDung").val()) != '' && $.trim($("#captchaInput").val()) != '') {
+                if ($.trim($("#captchaInput").val()) == iNumber) {
+                    $.ajax({
+                        url: "/TrangChu/phanhoi_tao",
+                        type: 'POST',
+                        contentType: "application/json; charset=utf-8",
+                        dataType: 'json',
+                        data: JSON.stringify({
+                            HoTen: $.trim($("#hoTen").val()),
+                            Tuoi: $.trim($("#tuoi").val()),
+                            DiaChi: $.trim($("#diaChi").val()),
+                            TieuDe: $.trim($("#tieuDe").val()),
+                            NoiDung: $.trim($("#noiDung").val()),
+                        }),
+                        success: function (data) {
+                            if (data > 0) {
+                                alert('Đăng phản hồi thành công!');
+                            }
+                            else {
+                                alert('Đăng phản hồi không thành công!');
+                            }
+                            reset();
+                        },
+                        error: errorFunc,
+                        async: false
+                    });
+                }
+                else {
+                    $("#captchaInput").validationEngine('showPrompt', 'Mã xác nhận không đúng!', 'error', true);
+                    iNumber = Math.floor(Math.random() * 100000);
+                    $("#txtCaptcha").val(iNumber);
+                }
+            }
+            $(this).prop('disabled', false);
+        });
+        
+        $("#dangKy").click(function () {
+            window.location.href = '/LopHoc/DanhSach';
+        });
+    });
+
+    function errorFunc() {
+        alert('Xảy ra lỗi trong quá trình thực hiện!');
+    }
+
+    function reset() {
+        $('#hoTen').val('');
+        $('#tuoi').val('');
+        $('#diaChi').val('');
+        $('#tieuDe').val('');
+        $('#noiDung').val('');
+        $('#captchaInput').val('');
+        iNumber = Math.floor(Math.random() * 100000);
+        $("#txtCaptcha").val(iNumber);
+    }
+</script>  
